@@ -1,0 +1,12 @@
+<ul class="list-group">
+  <% @apps.each do |app| %>
+    <li class="list-group-item list-group-item-primary text-center display-4">
+      <a class="text-decoration-none" href="/apps/<%= app.id %>">
+        <%= app.name %>
+      </a>
+      <% if app.payment %>
+        <img width="48" height="48" src="https://img.icons8.com/color/48/us-dollar-circled--v1.png" alt="us-dollar-circled--v1"/>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

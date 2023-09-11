@@ -1,0 +1,17 @@
+<%= form_for @app do |form| %>
+    <div class="card">
+      <div class="card-body">
+        <div class="mb-3">
+          <%= form.label :payment, { class: "form-label" } %><br>
+          <%= form.text_field :payment, { class: "form-control" } %>
+          <% @app.errors.full_messages_for(:payment).each do |message| %>
+            <div><%= message %></div>
+          <% end %>
+        </div>
+  
+        <div>
+          <%= form.submit "Submit", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>

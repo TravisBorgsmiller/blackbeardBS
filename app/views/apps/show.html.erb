@@ -1,0 +1,21 @@
+<ul class="list-group">
+    <li class="list-group-item list-group-item-primary text-center display-4">
+      Name: <%= @app.name %>
+    </li>
+    <li class="list-group-item list-group-item-success text-center display-4">
+      Phone: <%= number_to_phone(@app.number) %>
+   </li>
+   <li class="list-group-item list-group-item-warning text-center display-4">
+      Payment: <%= number_to_currency(@app.payment) %>
+   </li>
+
+   <%= link_to "Add Payment", edit_app_path(@app.id), class: "btn btn-success btn-block" %>
+
+  <%= link_to 'Back', apps_path, :class => "btn btn-secondary btn-lg btn-block" %>
+   <%= link_to "Destroy", app_path(@app), :class => "btn btn-danger btn-block",
+      data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+   } %>
+</ul>
+<%= turbo_frame_tag "remote_modal", target: "_top" %>
