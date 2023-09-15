@@ -9,14 +9,14 @@
       Payment: <%= number_to_currency(@app.payment) %>
    </li>
 
-   <% if @app.payment %>
+   <% if @app.payment && @app.payment.to_i.positive? %>
    <%= link_to "Change Payment", edit_app_path(@app.id), class: "btn btn-success btn-block" %>
    <% else %>
    <%= link_to "Add Payment", edit_app_path(@app.id), class: "btn btn-success btn-block" %>
    <% end %>
 
-  <%= link_to 'Back', apps_path, :class => "btn btn-secondary btn-lg btn-block" %>
-   <%= link_to "Destroy", app_path(@app), :class => "btn btn-danger btn-block",
+  <%= link_to 'Return to List', apps_path, :class => "btn btn-secondary btn-lg btn-block" %>
+   <%= link_to "Remove #{@app.name}", app_path(@app), :class => "btn btn-danger btn-block",
       data: {
       turbo_method: :delete,
       turbo_confirm: "Are you sure?"
