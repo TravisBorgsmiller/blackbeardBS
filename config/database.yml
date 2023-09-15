@@ -83,7 +83,6 @@ test:
 #
 production:
   <<: *default
-  url: <% ENV["DATABASE_URL"] %>
-  database: blackbeardBS_production
-  username: blackbeardBS
+  database: foggiest_shadow
+  username: blackbeardbs
   password: <%= ENV["BLACKBEARDBS_DATABASE_PASSWORD"] %>
