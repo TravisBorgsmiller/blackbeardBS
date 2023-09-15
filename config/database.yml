@@ -83,7 +83,6 @@ test:
 #
 production:
   <<: *default
-  secret_key_base: <% ENV["SECRET_KEY_BASE"] %>
   url: <% ENV["DATABASE_URL"] %>
   database: blackbeardBS_production
   username: blackbeardBS
