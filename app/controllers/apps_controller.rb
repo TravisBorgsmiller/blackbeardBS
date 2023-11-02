@@ -38,11 +38,11 @@ class AppsController < ApplicationController
 
       spot_count = App.all.count
 
-      client = Twilio::REST::Client.new(
+      @client = Twilio::REST::Client.new(
         Rails.application.credentials.live_sid,  
         Rails.application.credentials.live_auth
       )
-      client.messages.create(
+      @client.messages.create(
         body: "Welcome #{@app.name}, you are #{spot_count} in line!",
         from: Rails.application.credentials.phone_number,
         to: @app.number
