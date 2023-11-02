@@ -17,6 +17,9 @@
         <% end %>
       </div>
 
+      <%= form.label :service %><br>
+      <%= form.select :service, [ 'Haircut','Beard Trim','Hot Towel Shave', 'Hot Oil Beard Treatment', 'Hair Tattoo' ], :prompt => 'Select One' %>
+
       <div>
         <%= form.submit "Submit", class: "btn btn-primary" %>
       </div>

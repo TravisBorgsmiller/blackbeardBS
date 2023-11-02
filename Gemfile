@@ -33,6 +33,9 @@ gem "jbuilder"
 # add jquery for delete
 gem 'jquery-rails'
 
+# add Twilio for messaing
+gem 'twilio-ruby'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

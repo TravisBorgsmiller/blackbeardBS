@@ -1,5 +1,9 @@
+require 'twilio-ruby'
+
+
 class AppsController < ApplicationController
   protect_from_forgery with: :null_session, only: [:create]
+  skip_before_action :verify_authenticity_token
 
   def index
     @apps = App.all
@@ -32,6 +36,18 @@ class AppsController < ApplicationController
     if @app.save
       flash[:notice] = "#{@app.name} entered in queue!"
 
+      spot_count = App.all.count
+
+      client = Twilio::REST::Client.new(
+        Rails.application.credentials.live_sid,  
+        Rails.application.credentials.live_auth
+      )
+      client.messages.create(
+        body: "Welcome #{@app.name}, you are #{spot_count} in line!",
+        from: Rails.application.credentials.phone_number,
+        to: @app.number
+        )
+
       redirect_to new_app_path
     else
       render :new, status: :unprocessable_entity
@@ -47,7 +63,7 @@ class AppsController < ApplicationController
 
   private
   def app_params
-    params.require(:app).permit(:name, :number, :payment)
+    params.require(:app).permit(:name, :number, :payment, :service)
   end
 end
 # spot_count = App.all.count
@@ -56,6 +72,6 @@ end
 
 # message = client.messages.create(
 #   to: "#{@app.number}", # Replace with the recipient's phone number
-#   from: '+18668512629', # Replace with your Twilio phone number
+#   from: Rails.application.credentials.phone_number, # Replace with your Twilio phone number
 #   body: "You are now in the queue for BlackBeard Barber Shop. You are #{spot_count}th in line"
 # )
